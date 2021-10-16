@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  app:
+    build: .
+    container_name: {{ project_name }}
+    command: python manage.py runserver_plus 0.0.0.0:8000 --cert-file cert.crt
+    volumes:
+      - .:/home/django/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - USE_DOCKER=True
+
+  db:
+    build:
+      context: postgres
+      dockerfile: Dockerfile
+    container_name: {{ project_name }}-db
+    tty: true
+    environment:
+      - POSTGRES_DB={{ project_name }}
+      - POSTGRES_USER={{ project_name }}
+      - POSTGRES_PASSWORD={{ project_name }}
+      - USE_DOCKER=1
+    volumes:
+      - {{ project_name }}-pgdata:/var/lib/postgresql/data
+
+
+volumes:
+  {{ project_name }}-pgdata:
+    external: true

@@ -1,0 +1,56 @@
+services:
+  - postgres:12.0-alpine
+
+stages:
+  - test
+  - deploy
+
+variables:
+  SECRET_KEY: "secret_key"
+  DEBUG: "True"
+  ALLOWED_HOSTS: "127.0.0.1, .localhost, .herokuapp.com"
+
+  EMAIL_BACKEND: "django.core.mail.backends.console.EmailBackend"
+  EMAIL_HOST: "localhost"
+  EMAIL_PORT: "25"
+  EMAIL_USE_TLS: "False"
+  EMAIL_HOST_USER: ""
+  EMAIL_HOST_PASSWORD: ""
+  DEFAULT_FROM_EMAIL: ""
+
+  SERVER_EMAIL: ""
+  SERVER_TOOLS: ""
+  TEST_MODE: "True"
+
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+
+  EDUZZ_EMAIL: "EDUZZ_EMAIL"
+  EDUZZ_PUBLIC_KEY: "EDUZZ_PUBLIC_KEY"
+  EDUZZ_API_KEY: "EDUZZ_API_KEY"
+
+  DASHBOARD_URL_BASE: "DASHBOARD_URL_BASE"
+
+
+test:
+  stage: test
+  image: python:3.8.2
+  script:
+    # this configures Django application to use attached postgres database 
+    # that is run on `postgres` host
+    - export DATABASE_URL=postgres://postgres:postgres@postgres:5432/python-test-app
+    - apt-get update -qy
+    - apt-get install -y python-dev python-pip
+    - pip install -r requirements.txt
+    - python manage.py test
+
+
+staging:
+  stage: deploy
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app={{ project_name }} --api-key=$HEROKU_STAGING_API_KEY
+  only:
+    - master
