@@ -65,3 +65,6 @@ heroku config:set DEBUG=True SECRET_KEY=`cat .env | grep SECRET_KEY | cut -d = -
 git push heroku master
 ```
 
+Run container:
+docker-compose build
+docker-compose up
