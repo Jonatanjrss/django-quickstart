@@ -55,7 +55,7 @@ PROJECT_NAME=myproject && \
 mkproject $PROJECT_NAME && \
 python -m pip install --upgrade pip && \
 python -m pip install django
-django-admin startproject --template https://github.com/Jonatanjrss/django-quickstart/archive/master.zip --name=Procfile,.env,pytest.ini $PROJECT_NAME . && \
+django-admin startproject --template https://github.com/Jonatanjrss/django-quickstart/archive/master.zip --name=Procfile,.env,pytest.ini,.gitlab-ci.yml,docker-compose.yml $PROJECT_NAME . && \
 pip install --prefer-binary -r requirements-dev.txt && \
 git init && \
 git add . && \
