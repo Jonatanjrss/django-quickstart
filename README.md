@@ -52,8 +52,7 @@ git push heroku master
 
 ```
 PROJECT_NAME=myproject && \
-python -m venv .venv && \
-source .venv/bin/activate && \
+mkproject $PROJECT_NAME && \
 python -m pip install --upgrade pip && \
 python -m pip install django
 django-admin startproject --template https://github.com/Jonatanjrss/django-quickstart/archive/master.zip --name=Procfile,.env,pytest.ini $PROJECT_NAME . && \

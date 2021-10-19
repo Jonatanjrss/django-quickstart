@@ -29,8 +29,6 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 
-# SECURITY WARNING: don't run with test_mode turned on in production!
-TEST_MODE = config('TEST_MODE')
 
 # Application definition
 
@@ -41,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    '{{ project_name }}.core'
+
+    '{{ project_name }}.core',
 ]
 
 MIDDLEWARE = [

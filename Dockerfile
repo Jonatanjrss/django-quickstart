@@ -1,4 +1,4 @@
-FROM python:3.8.2
+FROM python:3.8.12
 
 RUN useradd -ms /bin/bash django
 

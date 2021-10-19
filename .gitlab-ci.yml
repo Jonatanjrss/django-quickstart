@@ -18,23 +18,12 @@ variables:
   EMAIL_HOST_PASSWORD: ""
   DEFAULT_FROM_EMAIL: ""
 
-  SERVER_EMAIL: ""
-  SERVER_TOOLS: ""
-  TEST_MODE: "True"
-
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: postgres
 
-  EDUZZ_EMAIL: "EDUZZ_EMAIL"
-  EDUZZ_PUBLIC_KEY: "EDUZZ_PUBLIC_KEY"
-  EDUZZ_API_KEY: "EDUZZ_API_KEY"
-
-  DASHBOARD_URL_BASE: "DASHBOARD_URL_BASE"
-
-
 test:
   stage: test
-  image: python:3.8.2
+  image: python:3.8.12
   script:
     # this configures Django application to use attached postgres database 
     # that is run on `postgres` host
