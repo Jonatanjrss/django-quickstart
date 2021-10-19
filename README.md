@@ -66,5 +66,7 @@ git push heroku master
 ```
 
 Run container:
+```
 docker-compose build
 docker-compose up
+```
