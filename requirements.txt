@@ -4,3 +4,7 @@ Django
 python-decouple
 gunicorn
 psycopg2-binary
+
+django-extensions
+Werkzeug
+pyOpenSSL
