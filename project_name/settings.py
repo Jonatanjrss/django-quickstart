@@ -45,6 +45,9 @@ INSTALLED_APPS = [
 
     # my apps
     '{{ project_name }}.core',
+
+    # dev apps
+    'test_without_migrations',
 ]
 
 MIDDLEWARE = [
