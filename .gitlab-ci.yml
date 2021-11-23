@@ -23,7 +23,7 @@ variables:
 
 test:
   stage: test
-  image: python:3.8.12
+  image: python:3.10.0
   script:
     # this configures Django application to use attached postgres database 
     # that is run on `postgres` host
