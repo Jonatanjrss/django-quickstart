@@ -8,3 +8,6 @@ psycopg2-binary
 django-extensions
 Werkzeug
 pyOpenSSL
+
+# dev
+django-test-without-migrations
